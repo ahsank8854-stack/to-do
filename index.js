@@ -1,5 +1,5 @@
 const express = require('express')
-const Connection = require('./Config/db')
+const Connection = require('./config/db')
 const studentPostApi = require('./controller/api')
 const GetApi = require('./controller/GetApi')
 const UpdateData = require('./controller/UpdateApi')
