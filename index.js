@@ -1,5 +1,8 @@
 const express = require('express')
-const Connection = require('./config/db')
+const cors = require('cors');
+
+
+const Connection = require('./Config/db')
 const studentPostApi = require('./controller/api')
 const GetApi = require('./controller/GetApi')
 const UpdateData = require('./controller/UpdateApi')
@@ -9,7 +12,7 @@ const deleteapi = require('./controller/DeleteApi')
 const app = express()
 
 Connection
-
+app.use(cors())
 app.use(express.json())
 
 app.post('/student',studentPostApi)
