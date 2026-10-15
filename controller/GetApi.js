@@ -2,11 +2,8 @@ const studentModel = require('../schema/student')
 
 const GetApi = async (req,res)=>{
       try {
-        const {name,age,email} = req.body
-        const studentComplete = studentModel.create({
-            name,age,email
-        })
-        return res.Find({message : "Data get successfully"})
+        const studentComplete = studentModel.find()
+        return res.send(studentComplete)
       } catch (error) {
         console.log("data insert error",error);
       }
