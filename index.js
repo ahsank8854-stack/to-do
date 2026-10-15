@@ -1,29 +1,26 @@
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
 
+const Connection = require('./config/db');
+const studentPostApi = require('./controller/api');
+const GetApi = require('./controller/GetApi');
+const UpdateData = require('./controller/UpdateApi');
+const deleteapi = require('./controller/DeleteApi');
 
-const Connection = require('./Config/db')
-const studentPostApi = require('./controller/api')
-const GetApi = require('./controller/GetApi')
-const UpdateData = require('./controller/UpdateApi')
-const deleteapi = require('./controller/DeleteApi')
+const app = express();
 
+Connection;
+app.use(cors());
+app.use(express.json());
 
-const app = express()
+app.post('/student', studentPostApi);
+app.get('/students', GetApi);
+app.put('/update/:id', UpdateData);
+app.delete('/delete/:id', deleteapi);
 
-Connection
-app.use(cors())
-app.use(express.json())
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
-app.post('/student',studentPostApi)
-app.get("/students",GetApi)
-app.put("/update/:id",UpdateData)
-app.delete("/delete/:id", deleteapi)
-
-
-app.listen(3000,()=>{
-    console.log('server is running');
-})
-
-
-module.exports = app
+module.exports = app;
