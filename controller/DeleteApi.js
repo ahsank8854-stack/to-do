@@ -4,7 +4,7 @@ const deleteapi = async (req, res) => {
     try {
         const userID = req.params.id
         await studentModel.findByIdAndDelete(userID)
-        return res.json({ message: 'data save' })
+        return res.json({ message: 'data deleted successfully' })
     } catch (error) {
         console.log("error", error);
         return res.status(500).json({ error: error.message });
