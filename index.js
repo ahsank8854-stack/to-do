@@ -1,26 +1,31 @@
 const express = require('express');
 const cors = require('cors');
 
-const Connection = require('./config/db');
-const studentPostApi = require('./controller/api');
-const GetApi = require('./controller/GetApi');
-const UpdateData = require('./controller/UpdateApi');
-const deleteapi = require('./controller/DeleteApi');
+// 1. Database Connection
+require('./config/db');
+
+// 2. Controllers (Functions)
+const addStudent = require('./controller/api');
+const getStudents = require('./controller/GetApi');
+const updateStudent = require('./controller/UpdateApi');
+const deleteStudent = require('./controller/DeleteApi');
 
 const app = express();
 
-Connection;
+// 3. Middlewares
 app.use(cors());
 app.use(express.json());
 
-app.post('/student', studentPostApi);
-app.get('/students', GetApi);
-app.put('/update/:id', UpdateData);
-app.delete('/delete/:id', deleteapi);
+// 4. API Routes (CRUD)
+app.post('/student', addStudent);          // Create (Naya student add karna)
+app.get('/students', getStudents);         // Read (Saare students lana)
+app.put('/update/:id', updateStudent);     // Update (Student edit karna)
+app.delete('/delete/:id', deleteStudent);  // Delete (Student delete karna)
 
+// 5. Server Start
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
