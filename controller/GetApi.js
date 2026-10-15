@@ -6,7 +6,7 @@ const GetApi = async (req,res)=>{
         const studentComplete = studentModel.create({
             name,age,email
         })
-        return res.send({message : "Data insert successfully"})
+        return res.Find({message : "Data get successfully"})
       } catch (error) {
         console.log("data insert error",error);
       }
